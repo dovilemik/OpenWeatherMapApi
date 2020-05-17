@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "aa806ad2-9315-4c5a-8477-1e8f7e988c2e",
+		"name": "OpenWeatherMap API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CurrentWeatherData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed0fc143-227f-4c6b-a3f7-fa159becc1ef",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"pm.test(\"Response has country LT\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"LT\");",
+							"});",
+							"",
+							"/*patikrinti kad celsijus*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Vilnius&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Vilnius"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OneCall",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1e6b77b-34da-40cc-8f41-7e63c7adf610",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"pm.test(\"Response has country LT\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Vilnius\");",
+							"});",
+							"",
+							"/* patikrinti kad grazina visus duomenis */ ",
+							"",
+							"pm.test(\"OneCall response has daily, hourly,minutely, current data of the weather\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"daily\"),",
+							"        pm.expect(pm.response.text()).to.include(\"current\"),",
+							"        pm.expect(pm.response.text()).to.include(\"hourly\");",
+							"});",
+							"",
+							"/* patikrinti kad celsijus */ ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "02af699069af3bdda98923033944db8f",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/onecall?lat=54.69&lon=25.28&appid=02af699069af3bdda98923033944db8f",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"onecall"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "54.69"
+						},
+						{
+							"key": "lon",
+							"value": "25.28"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UVIndex",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a948c50-185a-4998-bf37-a0a1edec978d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"/*Check that UV index is between 0-12 */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/uvi?lat=54.69&lon=25.28&appid=02af699069af3bdda98923033944db8f",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"uvi"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "54.69"
+						},
+						{
+							"key": "lon",
+							"value": "25.28"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
