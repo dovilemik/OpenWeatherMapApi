@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "aa806ad2-9315-4c5a-8477-1e8f7e988c2e",
+		"name": "OpenWeatherMapCurrent API testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CurrentWeather_ByCityName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed0fc143-227f-4c6b-a3f7-fa159becc1ef",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.test(\"City is Vilnius\", function () {",
+							"    pm.expect(jsonData.name).to.eql(\"Vilnius\");",
+							"});",
+							"",
+							"jsonData = pm.response.json();",
+							"pm.test(\"Country is LT\", function () {",
+							"    pm.expect(jsonData.sys.country).to.eql(\"LT\");",
+							"});",
+							"",
+							"/*Unit default: Kelvin*/",
+							"pm.test(\"Temperature is displayed in Celsius\", function () {",
+							"    pm.expect(jsonData.main.temp).to.be.below(40);",
+							"    pm.expect(jsonData.main.temp).to.be.above(-40);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Vilnius,lt&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Vilnius,lt"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentWeather_ByZip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "956bd842-2ac9-412d-b3eb-af38383b7ba9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"City is Vilnius\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Vilnius\");\r",
+							"});\r",
+							"\r",
+							"jsonData = pm.response.json();\r",
+							"pm.test(\"Country is LT\", function () {\r",
+							"    pm.expect(jsonData.sys.country).to.eql(\"LT\");\r",
+							"});\r",
+							"\r",
+							"/*Unit default: Kelvin*/\r",
+							"pm.test(\"Temperature is displayed in Celsius\", function () {\r",
+							"    pm.expect(jsonData.main.temp).to.be.below(40);\r",
+							"    pm.expect(jsonData.main.temp).to.be.above(-40);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/weather?zip=01001,lt&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "zip",
+							"value": "01001,lt"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentWeather_IncorrectCity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7edae32f-9fc0-4318-b8bf-2dec0627bbbb",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Correct error message is displayed when city is incorrect\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"city not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=incorrectcity&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "incorrectcity"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurrentWeather_IncorrectCountryCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85d98323-3e31-4157-a2dc-285282dafe3a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Correct error message is displayed when country code is incorrect\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"city not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Vilnius,US&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Vilnius,US"
+						},
+						{
+							"key": "appid",
+							"value": "02af699069af3bdda98923033944db8f"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "df83cd3f-6946-4d8a-b544-b0b1c544f11b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d4587623-de2a-4fe6-843a-460cbe902d47",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
