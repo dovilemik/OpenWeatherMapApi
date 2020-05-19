@@ -186,7 +186,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://api.openweathermap.org/data/2.5/weather?q=incorrectcity&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=incorrectcity,lt&appid=02af699069af3bdda98923033944db8f&units=metric",
 					"protocol": "http",
 					"host": [
 						"api",
@@ -201,7 +201,7 @@
 					"query": [
 						{
 							"key": "q",
-							"value": "incorrectcity"
+							"value": "incorrectcity,lt"
 						},
 						{
 							"key": "appid",
@@ -245,7 +245,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Vilnius,US&appid=02af699069af3bdda98923033944db8f&units=metric",
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Vilnius,us&appid=02af699069af3bdda98923033944db8f&units=metric",
 					"protocol": "http",
 					"host": [
 						"api",
@@ -260,7 +260,7 @@
 					"query": [
 						{
 							"key": "q",
-							"value": "Vilnius,US"
+							"value": "Vilnius,us"
 						},
 						{
 							"key": "appid",
