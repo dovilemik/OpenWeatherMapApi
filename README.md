@@ -2,7 +2,7 @@
 
 # Prerequisites
 
-1. In order to run the test suit, Postman API testing tool should be downloaded.
+1. In order to run the test suit, Postman API testing tool should be downloaded and installed.
 It can be downloaded here: https://www.postman.com/downloads/.
 2. Download Postman Collection file called „OpenWeatherMapCurrent API testing.postman_collection.json“.
 
