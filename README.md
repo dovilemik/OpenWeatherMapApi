@@ -15,7 +15,7 @@ It can be downloaded here: https://www.postman.com/downloads/.
 Result: Collection should appear under the section „Collections“.
 
 # Running the tests
-1. Press button „Runner“ in Postman in order to open Collection Runner.
+1. Press the button „Runner“ in Postman in order to open Collection Runner.
 2. When Collection Runner is opened in new window – select „OpenWeatherMapCurrent API testing“ collection from „All Collections“ list.
 3. Press button „Run OpenWather..“ to run the test suite.
 
