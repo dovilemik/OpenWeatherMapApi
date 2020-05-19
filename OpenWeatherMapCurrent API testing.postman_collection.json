@@ -276,6 +276,21 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "02af699069af3bdda98923033944db8f",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "appid",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
