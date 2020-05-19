@@ -12,7 +12,7 @@ It can be downloaded here: https://www.postman.com/downloads/.
 3. Select „Upload Files“ and find the file „OpenWeatherMapCurrent API testing.postman_collection.json“, then press „Open“.
 4. Confirm import by selecting button „Import“.
 
-Result: Collection should appear under the section „Collections“ 
+Result: Collection should appear under the section „Collections“.
 
 # Running the tests
 1. Press button „Runner“ in Postman in order to open Collection Runner.
